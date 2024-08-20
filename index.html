@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base de Página Web</title>
+    <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Grey+Qo:wght@400&display=swap" rel="stylesheet">
+    <style>
+        /* Estilo básico y configuración de fuente */
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'New Amsterdam', sans-serif;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body {
+            background-color: #eea1e7;
+        }
+
+        /* Estilo para la cabecera */
+        header {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: black;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            font-family: 'Grey Qo', cursive;
+            font-size: 1.8em;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-bottom: 3px solid #000000;
+        }
+
+        header img {
+            height: 150px;
+            width: auto;
+        }
+
+        /* Estilo para el contenido principal */
+        main {
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* Estilo para el pie de página */
+        footer {
+            background-color: #333;
+            color: rgb(238, 238, 238);
+            text-align: center;
+            padding: 10px;
+            font-family: 'New Amsterdam', sans-serif;
+            font-size: 1em;
+        }
+
+        /* Estilo para las secciones */
+        section {
+            padding: 20px;
+            border: 2px solid #ec6c6c;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: box-shadow 0.3s;
+            text-align: center; /* Centra el texto en las secciones */
+        }
+
+        section:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            font-size: 1.9em;
+            margin-top: 0;
+        }
+
+        section p {
+            font-size: 1.3em;
+            margin: 0; /* Elimina el margen por defecto */
+        }
+
+        /* Estilo para las imágenes dentro del texto */
+        section p img,
+        .menu-item img {
+            display: block;
+            width: 300px; /* Tamaño fijo para todas las imágenes */
+            height: 200px; /* Tamaño fijo para todas las imágenes */
+            object-fit: cover; /* Ajusta la imagen para cubrir el área definida */
+            margin: 20px auto; /* Centra la imagen horizontalmente */
+            border-radius: 15px;
+            border: 4px solid #ec7c80;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        section p img:hover,
+        .menu-item img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Estilo para el modal */
+        .modal {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: #ffffff;
+            padding: 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 7px rgba(0, 0, 0, 0.5);
+            max-width: 80%;
+            max-height: 80%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal img {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+            margin: 0;
+        }
+
+        /* Estilo para el menú */
+        #menu {
+            padding: 20px;
+            background-color: #ffffff;
+            border-top: 2px solid #ec6c6c;
+        }
+
+        #menu h2 {
+            font-size: 4em;
+            margin-top: 0;
+            font-family: 'Grey Qo', cursive;
+            text-align: center; /* Centra el texto horizontalmente */
+        }
+
+        .menu-item {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ec7c80;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgb(177, 83, 83);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: left; /* Centra el texto en el menú */
+        }
+
+        .menu-item img {
+            width: 300px;
+            height: 200px; /* Tamaño fijo para las imágenes del menú */
+            object-fit: cover; /* Ajusta la imagen para cubrir el área definida */
+            margin: 0; /* Elimina el margen */
+        }
+
+        .menu-item div {
+            display: flex;
+            flex-direction: column;
+            text-align: center; /* Centra el texto dentro del contenedor */
+            max-width: calc(100% - 160px); /* Asegura que el contenido no se desborde de la imagen */
+        }
+
+        .menu-item h3 {
+            font-family: 'Grey Qo', cursive;
+            font-size: 3.0em;
+            margin-bottom: 50px;
+        }
+
+        .menu-item p {
+            font-family: 'New Amsterdam', sans-serif;
+            font-size: 1.6em;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabecera -->
+    <header>
+        <img src="images/baraurur.png" alt="Imagen de ejemplo">
+        <h1>Vegan Food</h1>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main>
+        <section id="tema1">
+            <h2>¿QUÉ ES VEGAN FOOD?</h2>
+            <p>Es un restaurante vegano pet friendly. Llevaremos a flote
+                este emprendimiento con ayuda de mi familia y amigos para encontrar 
+                un punto donde sea conveniente para las personas y que compartan su experiencia
+                en mi restaurante.
+                <img src="images/Diseño-sin-título-1.jpg" alt="Imagen descriptiva" id="image1">
+            </p>
+        </section>
+
+        <section id="tema2">
+            <h2>¿POR QUÉ CREAMOS VEGAN FOOD?</h2>
+            <p>En mi comunidad no existe un restaurante vegano cerca, cosa que a mucha gente le puede interesar la idea de un
+                restaurante vegano entonces tuvimos la idea de emprender a partir de ese problema.
+                Además de contar con obras benéficas que otros restaurantes no tienen.
+                <img src="images/baraurur.png" alt="Imagen descriptiva" id="image2">
+            </p>
+        </section>
+        
+        <section id="tema3">
+            <h2>¿QUÉ SOLUCIONAREMOS CON VEGAN FOOD?</h2>
+            <p>Emprenderemos como un restaurante vegano para que las personas que respetan la vida de los animales puedan venir a
+                saciar su paladar e incluso pueden venir acompañados de sus mascotas para que puedan salir a pasear.
+                <img src="images/vegano-vaca-696x464-2.jpg" alt="Imagen descriptiva" id="image3"></p>
+        </section>
+    </main>
+
+    <section id="menu">
+        <h2>Menú de Vegan Food</h2>
+    
+        <div class="menu-item">
+            <div>
+                <h3>Ensalada de Quinoa</h3>
+                <p>Una deliciosa combinación de quinoa, aguacate, tomate cherry, y un aderezo de limón y aceite de oliva.</p>
+                <p><strong>Precio:</strong> $7.99</p>
+            </div>
+            <img src="images/ensalada-quinoa.jpg" alt="Ensalada de Quinoa">
+        </div>
+    
+        <div class="menu-item">
+            <div>
+                <h3>Burger de Lentejas</h3>
+                <p>Jugosa burger hecha de lentejas, acompañada de lechuga, tomate, cebolla, y nuestra salsa vegana especial.</p>
+                <p><strong>Precio:</strong> $9.99</p>
+            </div>
+            <img src="images/burguer-de-lenteja.jpg" alt="Burger de Lentejas">
+        </div>
+    
+        <div class="menu-item">
+            <div>
+                <h3>Tacos Veganos</h3>
+                <p>Tortillas de maíz rellenas de frijoles negros, pico de gallo, y aguacate, acompañadas de salsa casera.</p>
+                <p><strong>Precio:</strong> $8.99</p>
+            </div>
+            <img src="images/tacos-veganos.jpg" alt="Tacos Veganos">
+        </div>
+    </section>
+    
+    <!-- Modal para imágenes -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <img src="" alt="" id="modalImage">
+        </div>
+    </div>
+
+    <!-- Pie de Página -->
+    <footer>
+        &copy; 2024 Vegan Food. Todos los derechos reservados.
+    </footer>
+
+    <script>
+        // Funcionalidad del Modal
+        const images = document.querySelectorAll('section p img, .menu-item img');
+        const modal = document.getElementById('modal');
+        const modalImage = document.getElementById('modalImage');
+
+        images.forEach(image => {
+            image.addEventListener('click', () => {
+                modalImage.src = image.src;
+                modalImage.alt = image.alt;
+                modal.style.display = 'flex';
+            });
+        });
+
+        modal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
